@@ -1,5 +1,9 @@
 <?php 
     include "./indexdb.php";
+    $paramSearch = isset($_GET["search"]) ? $_GET["search"] : "";
+    $curentPage = isset($_GET["page"]) ? $_GET["page"]: 1;
+    $pageNext = ($curentPage == $totalPage) ? "" : "?page=".($curentPage + 1);
+    $pagePrev = ($curentPage == 1) ? "" : "?page=".($curentPage - 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +16,14 @@
     <title>Document</title>
 </head>
 <body>
+  <form class="row" action="" method="get">
+    <div class="col-6">
+    <div class="input-group">
+      <input value="<?= $paramSearch ?>" name="search" type="text" class="form-control rounded" placeholder="Name" />
+      <input type="submit" class="btn btn-outline-primary" value="Search"></input>
+    </div>
+    </div> 
+  </form>
 <table class="table">
   <thead>
     <tr>    
@@ -33,8 +45,36 @@
             </td>
         </tr>
     <?php }; ?>
-    
-  </tbody>
+    </tbody>
 </table>
+  <?php
+    if(isset($noresult)){
+      echo $noresult;
+    };
+  ?>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="<?= $pagePrev ?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <?php 
+      for ($i=1; $i <= $totalPage; $i++) {  ?>
+        <?php 
+         $active = ($i == $curentPage) ? "active" : "";
+        ?>
+        <li class="page-item <?= $active ?>"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+     <?php }; ?>
+    
+    <li class="page-item">
+      <a class="page-link" href="<?= $pageNext ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
 </body>
 </html>
