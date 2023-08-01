@@ -46,5 +46,4 @@
         $result = insert_user($user);
         return $result;
     }
-    
 ?>

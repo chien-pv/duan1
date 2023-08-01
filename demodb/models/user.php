@@ -40,7 +40,6 @@ function get_data_from_result($result){
 }
 
 function insert_user($user) {
-    var_dump($user);
     $name = $user["name"];
     $salary = $user["salary"];
     $conn = connect();

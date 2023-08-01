@@ -1,4 +1,6 @@
 <?php 
+  include './global.php';
+  
   $_GET["controller"] ??= "homes";
   $_GET["action"] ??= "index";
 

@@ -1,9 +1,11 @@
 <?php 
     include './controllers/user_ctr.php';
-    // var_dump($_POST);
     if(!empty($_POST["user"])){
         $user = $_POST["user"];
         $data = create($user);
+        if ($data ) {
+            page_redirect('/demodb/?controller=users');
+        }
     } 
 ?>
 
