@@ -2,13 +2,14 @@
     include './controllers/user_ctr.php';
     if(!empty($_POST["user"])){
         $user = $_POST["user"];
-        $data = create($user);
-        if ($data ) {
-            page_redirect('/demodb/?controller=users');
-        }
+        create($user);
     } 
 ?>
 
+<h1>
+     Create User
+</h1>
+<hr>
 <form action="/demodb/?controller=users&&action=new" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>

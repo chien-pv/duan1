@@ -2,19 +2,26 @@
     // include "./indexdb.php";
     include './controllers/user_ctr.php';
     $data = index_users();
-
     $dataUsers = $data["user_data"];
     $totalPage = $data["total_page"];
     $paramSearch = isset($_GET["search"]) ? $_GET["search"] : "";
     $curentPage = isset($_GET["page"]) ? $_GET["page"]: 1;
     $pageNext = ($curentPage == $totalPage) ? "" : "?page=".($curentPage + 1);
     $pagePrev = ($curentPage == 1) ? "" : "?page=".($curentPage - 1);
+
+    if($_GET["action"]== "delete"){
+        // var_dump($_GET["action"]);
+        // var_dump($_GET["id"]);
+        // die();
+       $user_id = $_GET["id"] ;
+       delete_user($user_id);
+    }
 ?>
 <h1>
     Users Management
 </h1>
 <hr>
-<form class="row" action="/demodb" method="get">
+<form class="row justify-content-end" action="/demodb" method="get">
 <div class="col-6">
     <div class="input-group">
     <input type="hidden" name="controller" value="users">
@@ -23,6 +30,7 @@
     </div>
     </div> 
 </form>
+<a href="/demodb/?controller=users&&action=new" class="btn btn-outline-info">New user</a>
 <table class="table">
 <thead>
     <tr>    
@@ -39,8 +47,8 @@
             <td><?= $value["name"] ?></td>
             <td><?= $value["salary"] ?></td>
             <td>
-                <button type="button" class="btn btn-outline-danger">Delete</button>
-                <button type="button" class="btn btn-outline-warning">Edits</button>
+                <a href="/demodb/?controller=users&&action=delete&&id=<?= $value["id"]?>"  type="button" class="btn btn-outline-danger">Delete</a>
+                <a href="/demodb/?controller=users&&action=edit&&id=<?= $value["id"]?>" type="button" class="btn btn-outline-warning">Edit</a>
             </td>
         </tr>
     <?php }; ?>

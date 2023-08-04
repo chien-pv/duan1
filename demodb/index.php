@@ -16,6 +16,9 @@
         case 'new':
           $layout = './views/users/new.php';
           break;
+        case 'edit':
+          $layout = './views/users/edit.php';
+          break;
         default:
           $layout = './views/users/index.php';
           break;
