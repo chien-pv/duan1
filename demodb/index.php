@@ -1,8 +1,17 @@
 <?php 
+  include './controllers/login_controller.php'; 
+  session_start();
+  if((!$_SESSION["user"])){
+    header("location: login.php");
+  }
   include './global.php';
-  
   $_GET["controller"] ??= "homes";
+
   $_GET["action"] ??= "index";
+
+  if($_GET["action"]=="logout"){
+    logout();
+  }
 
   switch ( $_GET["controller"] ) {
     case 'homes':

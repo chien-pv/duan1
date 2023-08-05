@@ -91,4 +91,13 @@ function delete_user_by_id($user_id) {
     return $result; 
 }
 
+function get_user_by_email($email) {
+    $conn = connect();
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($sql);
+    $datas = get_data_from_result($result);
+    $conn->close();
+    return $datas[0];
+}
+
 ?>

@@ -32,7 +32,7 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="/demodb/?action=logout">Sign out</a></li>
             </ul>
         </div>
     </div>
